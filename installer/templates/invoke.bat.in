@@ -9,7 +9,7 @@ set INVOKEAI_ROOT=.
 :start
 echo Desired action:
 echo 1. Generate images with the browser-based interface
-echo 2. Run textual inversion training
+echo 2. Run textual inversion training (Legacy) - New UI at invoke-ai/invoke-training
 echo 3. Merge models (diffusers type only)
 echo 4. Download and install models
 echo 5. Change InvokeAI startup options
@@ -25,7 +25,9 @@ IF /I "%choice%" == "1" (
     echo Starting the InvokeAI browser-based UI..
     python .venv\Scripts\invokeai-web.exe %*
 ) ELSE IF /I "%choice%" == "2" (
-    echo Starting textual inversion training..
+    echo This version of Textual Inversion Training is the legacy version.
+    echo Visit https://github.com/invoke-ai/invoke-training for a full training UI and additional training options.
+    echo Starting legacy textual inversion training..
     python .venv\Scripts\invokeai-ti.exe --gui
 ) ELSE IF /I "%choice%" == "3" (
     echo Starting model merging script..

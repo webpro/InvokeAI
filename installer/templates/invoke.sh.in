@@ -118,7 +118,7 @@ do_choice() {
 do_dialog() {
     options=(
         1 "Generate images with a browser-based interface"
-        2 "Textual inversion training"
+        2 "Textual inversion training (Legacy) - New UI at https://github.com/invoke-ai/invoke-training"
         3 "Merge models (diffusers type only)"
         4 "Download and install models"
         5 "Change InvokeAI startup options"
@@ -151,7 +151,7 @@ do_line_input() {
     printf " ** For a more attractive experience, please install the 'dialog' utility using your package manager. **\n\n"
     printf "What would you like to do?\n"
     printf "1: Generate images using the browser-based interface\n"
-    printf "2: Run textual inversion training\n"
+    printf "2: Run textual inversion training (Legacy) - New UI at https://github.com/invoke-ai/invoke-training \n"
     printf "3: Merge models (diffusers type only)\n"
     printf "4: Download and install models\n"
     printf "5: Change InvokeAI startup options\n"
