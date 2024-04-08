@@ -35,7 +35,7 @@ export const addSDXLRefinerToGraph = async (
   modelLoaderNodeId?: string,
   canvasInitImage?: ImageDTO,
   canvasMaskImage?: ImageDTO,
-  inpaintCreateMask?: any
+  inpaintCreateMaskNode?: any
 
 ): Promise<void> => {
   const {
@@ -266,11 +266,9 @@ export const addSDXLRefinerToGraph = async (
       });
     }
 
-    const id = graph.nodes[SDXL_REFINER_POSITIVE_CONDITIONING].id
-
     graph.edges.push({
       source: {
-        node_id: id,
+        node_id: inpaintCreateMaskNode.id,
         field: 'denoise_mask',
       },
       destination: {

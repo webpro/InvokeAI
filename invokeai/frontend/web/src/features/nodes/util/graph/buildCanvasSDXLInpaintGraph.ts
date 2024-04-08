@@ -429,6 +429,7 @@ export const buildCanvasSDXLInpaintGraph = async (
 
   // Add Refiner if enabled
   if (refinerModel) {
+    const inpaintCreateMaskNode = graph.nodes[INPAINT_CREATE_MASK] as CreateGradientMaskInvocation;
     await addSDXLRefinerToGraph(
       state,
       graph,
@@ -436,7 +437,7 @@ export const buildCanvasSDXLInpaintGraph = async (
       modelLoaderNodeId,
       canvasInitImage,
       canvasMaskImage,
-      inpaintCreateMask
+      inpaintCreateMaskNode
 
     );
     if (seamlessXAxis || seamlessYAxis) {
