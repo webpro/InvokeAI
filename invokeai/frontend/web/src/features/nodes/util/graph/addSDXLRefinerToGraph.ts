@@ -34,7 +34,9 @@ export const addSDXLRefinerToGraph = async (
   baseNodeId: string,
   modelLoaderNodeId?: string,
   canvasInitImage?: ImageDTO,
-  canvasMaskImage?: ImageDTO
+  canvasMaskImage?: ImageDTO,
+  inpaintCreateMask?: any
+
 ): Promise<void> => {
   const {
     refinerModel,
@@ -222,6 +224,15 @@ export const addSDXLRefinerToGraph = async (
       minimum_denoise: canvasCoherenceMinDenoise,
     };
 
+    // [INPAINT_CREATE_MASK]: {
+    //   type: 'create_gradient_mask',
+    //   id: INPAINT_CREATE_MASK,
+    //   is_intermediate,
+    //   coherence_mode: canvasCoherenceMode,
+    //   minimum_denoise: canvasCoherenceMinDenoise,
+    //   edge_radius: canvasCoherenceEdgeSize,
+    // },
+
     if (graph.id === SDXL_CANVAS_INPAINT_GRAPH) {
       if (isUsingScaledDimensions) {
         graph.edges.push({
@@ -255,9 +266,11 @@ export const addSDXLRefinerToGraph = async (
       });
     }
 
+    const id = graph.nodes[SDXL_REFINER_POSITIVE_CONDITIONING].id
+
     graph.edges.push({
       source: {
-        node_id: SDXL_REFINER_INPAINT_CREATE_MASK,
+        node_id: id,
         field: 'denoise_mask',
       },
       destination: {
