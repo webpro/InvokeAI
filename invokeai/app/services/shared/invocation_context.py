@@ -534,7 +534,7 @@ class ModelsInterface(InvocationContextInterface):
         loader: Optional[Callable[[Path], Dict[str | int, Any]]] = None,
     ) -> LoadedModel:
         """
-        Load and cache the model file located at the indicated URL.
+        Download, cache, and Load the model file located at the indicated URL.
 
         This will check the model download cache for the model designated
         by the provided URL and download it if needed using download_and_cache_model().
