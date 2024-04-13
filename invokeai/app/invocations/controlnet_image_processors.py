@@ -610,7 +610,7 @@ class DepthAnythingImageProcessorInvocation(ImageProcessorInvocation):
     resolution: int = InputField(default=512, ge=64, multiple_of=64, description=FieldDescriptions.image_res)
 
     def run_processor(self, image: Image.Image, context: InvocationContext) -> Image.Image:
-        depth_anything_detector = DepthAnythingDetector()
+        depth_anything_detector = DepthAnythingDetector(context)
         depth_anything_detector.load_model(model_size=self.model_size)
 
         processed_image = depth_anything_detector(image=image, resolution=self.resolution)
