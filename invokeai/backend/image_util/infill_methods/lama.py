@@ -1,4 +1,3 @@
-import gc
 from typing import Any
 
 import numpy as np
@@ -6,9 +5,8 @@ import torch
 from PIL import Image
 
 import invokeai.backend.util.logging as logger
-from invokeai.app.services.config.config_default import get_config
-from invokeai.app.util.download_with_progress import download_with_progress_bar
 from invokeai.app.services.shared.invocation_context import InvocationContext
+
 
 def norm_img(np_img):
     if len(np_img.shape) == 2:
@@ -27,13 +25,13 @@ def load_jit_model(url_or_path, device):
 
 
 class LaMA:
-    def __init__ (self, context: InvocationContext):
+    def __init__(self, context: InvocationContext):
         self._context = context
 
     def __call__(self, input_image: Image.Image, *args: Any, **kwds: Any) -> Any:
         loaded_model = self._context.models.load_ckpt_from_url(
-            source = "https://github.com/Sanster/models/releases/download/add_big_lama/big-lama.pt",
-            loader = lambda path: load_jit_model(path, "cpu")
+            source="https://github.com/Sanster/models/releases/download/add_big_lama/big-lama.pt",
+            loader=lambda path: load_jit_model(path, "cpu"),
         )
 
         image = np.asarray(input_image.convert("RGB"))
